@@ -7,7 +7,7 @@ The examples from the awesome [react-elmish-example](https://github.com/gaearon/
 ## TODO
 
 - [x] Example: Counter,
-- [x] Example: listOf(Counter, 'counter'),
+- [ ] Example: listOf(Counter, 'counter'),
 - [ ] Example: withLog(Counter),
 - [ ] Example: withLog(listOf(Counter, 'counter')),
 - [ ] Example: undoable(Counter),
