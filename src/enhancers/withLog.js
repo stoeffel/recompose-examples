@@ -1,42 +1,27 @@
 import React from 'react';
-
-const CHANGE = 'CHANGE';
+import { compose, withState, mapProps } from 'recompose';
 
 export default function withLog(Child) {
-  return {
-    view({ log, state, dispatch }) {
-      return (
-        <div>
-          <Child.view
-            {...state}
-            dispatch={action => dispatch({
-              type: CHANGE,
-              action
-            })} />
-          <ul>
-            {log.map((action, index) =>
-              <li key={index}>
-                {JSON.stringify(action)}
-              </li>
-            )}
-          </ul>
-        </div>
-      );
-    },
+  const Log = ({log, onChange}) => (
+    <div>
+      <Child
+        dispatch={action => onChange({ action })} />
+      <ul>
+        {log.map((action, index) =>
+          <li key={index}>
+            {JSON.stringify(action)}
+          </li>
+        )}
+      </ul>
+    </div>
+  );
 
-    update({
-      log = [],
-      state = Child.update(undefined, {})
-    } = {}, action) {
-      switch (action.type) {
-      case CHANGE:
-        return {
-          log: [...log, action.action],
-          state: Child.update(state, action.action)
-        };
-      default:
-        return { log, state };
-      }
-    }
-  }
+  const WithLog = compose(
+    withState('log', 'update', []),
+    mapProps(({ update, ...rest }) => ({
+      onChange: action => update(log => [...log, action.action, 'foo'] ),
+      ...rest
+    }))
+  )(Log);
+  return WithLog;
 }

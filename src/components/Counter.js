@@ -1,15 +1,16 @@
 import React from 'react';
-import { compose, withState, mapProps } from 'recompose';
+import { compose, withState, mapProps, defaultProps } from 'recompose';
 
-const Counter = ({ counter, increment, decrement }) => (
+const Counter = ({ counter, increment, decrement, dispatch }) => (
   <p>
     Count: {counter}
-    <button onClick={increment}>+</button>
-    <button onClick={decrement}>-</button>
+    <button onClick={()=>{dispatch({ type: 'INCREMENT' }); increment();}}>+</button>
+    <button onClick={()=>{dispatch({ type: 'DECREMENT' }); decrement();}}>-</button>
   </p>
 );
 
 const CounterContainer = compose(
+  defaultProps({ dispatch: () => {}}),
   withState('counter', 'setCounter', 0),
   mapProps(({ setCounter, ...rest }) => ({
     increment: () => setCounter(n => n + 1),

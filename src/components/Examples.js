@@ -12,12 +12,12 @@ const examples = [{
 }, {
   Example: listOf(Counter, 'counter'),
   name: 'listOf(Counter)'
-//}, {
-  //Example: withLog(Counter),
-  //name: 'withLog(Counter)'
-//}, {
-  //Example: withLog(listOf(Counter, 'counter')),
-  //name: 'withLog(listOf(Counter))'
+}, {
+  Example: withLog(Counter),
+  name: 'withLog(Counter)'
+}, {
+  Example: withLog(listOf(Counter, 'counter')),
+  name: 'withLog(listOf(Counter))'
 //}, {
   //Example: undoable(Counter),
   //name: 'undoable(Counter)'
