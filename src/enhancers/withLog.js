@@ -19,7 +19,7 @@ export default function withLog(Child) {
   const WithLog = compose(
     withState('log', 'update', []),
     mapProps(({ update, ...rest }) => ({
-      onChange: action => update(log => [...log, action.action, 'foo'] ),
+      onChange: action => update(log => [...log, action.action] ),
       ...rest
     }))
   )(Log);

@@ -9,7 +9,7 @@ The examples from the awesome [react-elmish-example](https://github.com/gaearon/
 - [x] Example: Counter,
 - [x] Example: listOf(Counter, 'counter'),
 - [x] Example: withLog(Counter),
-- [ ] Example: withLog(listOf(Counter, 'counter')),
+- [x] Example: withLog(listOf(Counter, 'counter')),
 - [ ] Example: undoable(Counter),
 - [ ] Example: withLog(undoable(Counter)),
 - [ ] Example: undoable(listOf(Counter, 'counter')),

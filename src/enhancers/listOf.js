@@ -4,14 +4,14 @@ import { compose, withState, mapProps, defaultProps } from 'recompose';
 export default function listOf(Item, what) {
   const List = ({ items, add, remove, dispatch }) => (
       <div>
-        <button onClick={add}>
+        <button onClick={() => { dispatch({ type: 'ADD' }); add();}}>
           Add {what}
         </button>
-        <button onClick={remove}>
+        <button onClick={() => { dispatch({ type: 'REMOVE' }); remove();}}>
           Remove {what}
         </button>
         {items.map((item, i) =>
-          <Item key={i} {...item} dispatch={action => dispatch({ action, index: i })}/>
+          <Item key={i} {...item} dispatch={action => dispatch({ type: 'CHANGE', action, index: i })}/>
         )}
       </div>);
 
