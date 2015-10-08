@@ -5,7 +5,7 @@ export default function withLog(Child) {
   const Log = ({log, onChange}) => (
     <div>
       <Child
-        dispatch={action => onChange({ action })} />
+        onChange={action => onChange({ action })} />
       <ul>
         {log.map((action, index) =>
           <li key={index}>

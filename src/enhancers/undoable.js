@@ -1,4 +1,6 @@
 import React from 'react';
+import { compose, withState, mapProps, defaultProps } from 'recompose';
+import { dispatch } from '../dispatch';
 
 const UNDO = 'UNDO';
 const REDO = 'REDO';
