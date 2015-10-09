@@ -10,7 +10,9 @@ The examples from the awesome [react-elmish-example](https://github.com/gaearon/
 - [x] Example: listOf(Counter, 'counter'),
 - [x] Example: withLog(Counter),
 - [x] Example: withLog(listOf(Counter, 'counter')),
-- [ ] Example: undoable(Counter),
-- [ ] Example: withLog(undoable(Counter)),
-- [ ] Example: undoable(listOf(Counter, 'counter')),
-- [ ] Example: listOf(undoable(Counter), 'counter'),
+- [x] Example: undoable(Counter),
+- [x] Example: withLog(undoable(Counter)),
+- [x] Example: undoable(listOf(Counter, 'counter')),
+- [x] Example: listOf(undoable(Counter), 'counter'),
+
+- [ ] fix bug first item in history

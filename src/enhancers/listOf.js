@@ -1,31 +1,40 @@
 import React from 'react';
-import { compose, withState, mapProps, defaultProps } from 'recompose';
-import { dispatch } from '../dispatch';
+import { compose, mapProps, defaultProps } from 'recompose';
+import dispatched from './dispatched';
 
 const ADD = 'ADD';
 const REMOVE = 'REMOVE';
 
 export default function listOf(Item, what) {
 
-  const List = ({ items, add, remove, onChange }) => (
+  const List = ({ items, add, remove, change }) => (
     <div>
-      <button onClick={dispatch(onChange, ADD, add)}>
+      <button onClick={add}>
         Add {what}
       </button>
-      <button onClick={dispatch(onChange, REMOVE, remove)}>
+      <button onClick={remove}>
         Remove {what}
       </button>
       {items.map((item, i) =>
-        <Item key={i} {...item} onChange={action => onChange({ type: 'CHANGE', action, index: i })}/>
+        <Item key={i} {...item} dispatch={newItem => change(i, newItem)}/>
       )}
     </div>);
 
   const ListOf = compose(
-    defaultProps({ onChange: () => {}}),
-    withState('items', 'update', []),
-    mapProps(({ update, ...rest }) => ({
-      add: () => update(i => [...i, Item] ),
-      remove: () => update(i => i.slice(0, -1)),
+    dispatched,
+    defaultProps({ items: [] }),
+    mapProps(({ dispatch, items, ...rest }) => ({
+      add: () => dispatch({ items: [...items, {}], type: ADD }),
+      remove: () => dispatch({ items: items.slice(0, -1), type: REMOVE }),
+      change: (i, newItem) => dispatch({
+        type: newItem.type,
+        items: [
+          ...items.slice(0, i),
+          newItem,
+          ...items.slice(i + 1)
+        ]
+      }),
+      dispatch, items,
       ...rest
     }))
   )(List);
