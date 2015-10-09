@@ -14,7 +14,7 @@ const Counter = ({ counter, increment, decrement }) => (
 );
 
 const CounterContainer = compose(
-  dispatched,
+  dispatched({counter: 0}),
   mapProps(({ dispatch, counter = 0, ...rest }) => ({
     increment: () => dispatch({ counter: counter + 1, type: INCREMENT }),
     decrement: () => dispatch({ counter: counter - 1, type: DECREMENT }),

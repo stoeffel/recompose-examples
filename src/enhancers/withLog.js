@@ -17,7 +17,7 @@ export default function withLog(Child) {
   );
 
   const WithLog = compose(
-    dispatched,
+    dispatched({ log: [] }),
     defaultProps({ log: [] }),
     mapProps(({ log, dispatch, ...rest }) => ({
       addLog: action => {

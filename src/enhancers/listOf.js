@@ -21,7 +21,7 @@ export default function listOf(Item, what) {
     </div>);
 
   const ListOf = compose(
-    dispatched,
+    dispatched({ items: [] }),
     defaultProps({ items: [] }),
     mapProps(({ dispatch, items, ...rest }) => ({
       add: () => dispatch({ items: [...items, {}], type: ADD }),

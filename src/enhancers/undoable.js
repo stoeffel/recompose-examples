@@ -23,12 +23,12 @@ export default function undoable(Child) {
   );
 
   const Undoable = compose(
-    dispatched,
-    defaultProps({ past: [], present: {}, future: [] }),
+    dispatched({ past: [], present: null future: [] }),
+    defaultProps({ past: [], present: null future: [] }),
     mapProps(({ dispatch, past, present, future, ...rest }) => ({
-      updatePresent: change => dispatch({
+      updatePresent: (change, before) => dispatch({
         type: change.type,
-        past: [...past, present],
+        past: [...past, before],
         present: change,
         future: []
       }),
