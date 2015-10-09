@@ -9,10 +9,10 @@ export default function listOf(Item, what) {
 
   const List = ({ items, add, remove, onChange }) => (
     <div>
-      <button onClick={dispatch(onChange, ADD, add}>
+      <button onClick={dispatch(onChange, ADD, add)}>
         Add {what}
       </button>
-      <button onClick={dispatch(onChange, REMOVE, remove}>
+      <button onClick={dispatch(onChange, REMOVE, remove)}>
         Remove {what}
       </button>
       {items.map((item, i) =>

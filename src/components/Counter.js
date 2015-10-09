@@ -8,8 +8,8 @@ const DECREMENT = 'DECREMENT';
 const Counter = ({ counter, increment, decrement, onChange }) => (
   <p>
     Count: {counter}
-    <button onClick={dispatch(onChange, INCREMENT, increment}>+</button>
-    <button onClick={dispatch(onChange, DECREMENT, decrement}>-</button>
+    <button onClick={dispatch(onChange, INCREMENT, increment)}>+</button>
+    <button onClick={dispatch(onChange, DECREMENT, decrement)}>-</button>
   </p>
 );
 
