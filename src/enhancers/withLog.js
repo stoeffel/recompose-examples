@@ -1,11 +1,11 @@
 import React from 'react';
-import { compose, withState, mapProps } from 'recompose';
+import { compose, defaultProps, mapProps } from 'recompose';
+import dispatched from '../enhancers/dispatched';
 
 export default function withLog(Child) {
-  const Log = ({log, onChange}) => (
+  const Log = ({log, addLog}) => (
     <div>
-      <Child
-        onChange={action => onChange({ action })} />
+      <Child dispatch={action => addLog({ action })} />
       <ul>
         {log.map((action, index) =>
           <li key={index}>
@@ -17,9 +17,14 @@ export default function withLog(Child) {
   );
 
   const WithLog = compose(
-    withState('log', 'update', []),
-    mapProps(({ update, ...rest }) => ({
-      onChange: action => update(log => [...log, action.action] ),
+    dispatched,
+    defaultProps({ log: [] }),
+    mapProps(({ log, dispatch, ...rest }) => ({
+      addLog: action => {
+        dispatch({ log: [...log, action.action.type] });
+      },
+      dispatch,
+      log,
       ...rest
     }))
   )(Log);

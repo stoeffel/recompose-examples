@@ -4,8 +4,6 @@ import listOf from '../enhancers/listOf';
 import withLog from '../enhancers/withLog';
 import undoable from '../enhancers/undoable';
 
-const CHANGE = 'CHANGE';
-
 const examples = [{
   Example: Counter,
   name: 'Counter'
@@ -18,18 +16,18 @@ const examples = [{
 }, {
   Example: withLog(listOf(Counter, 'counter')),
   name: 'withLog(listOf(Counter))'
-//}, {
-  //Example: undoable(Counter),
-  //name: 'undoable(Counter)'
-//}, {
-  //Example: withLog(undoable(Counter)),
-  //name: 'withLog(undoable(Counter))'
-//}, {
-  //Example: undoable(listOf(Counter, 'counter')),
-  //name: 'undoable(listOf(Counter))'
-//}, {
-  //Example: listOf(undoable(Counter), 'counter'),
-  //name: 'listOf(undoable(Counter))'
+}, {
+  Example: undoable(Counter),
+  name: 'undoable(Counter)'
+}, {
+  Example: withLog(undoable(Counter)),
+  name: 'withLog(undoable(Counter))'
+}, {
+  Example: undoable(listOf(Counter, 'counter')),
+  name: 'undoable(listOf(Counter))'
+}, {
+  Example: listOf(undoable(Counter), 'counter'),
+  name: 'listOf(undoable(Counter))'
 }]
 
 export default function() {
